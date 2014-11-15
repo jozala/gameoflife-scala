@@ -8,13 +8,16 @@ import scala.collection.mutable
 
 class GameOfLifeTest extends FlatSpec with Matchers with MockitoSugar {
 
-  "A Stack" should "pop values in last-in-first-out order" in {
-    val stack = new mutable.Stack[Int]
-
-    stack.push(1)
-    stack.push(2)
-    stack.pop() should be (2)
-    stack.pop() should be (1)
+  "Cell specified on the board" should "be alive" in {
+    val board = new Board(Cell(1,1))
+    board.isAlive(1,1) shouldBe true
   }
 
 }
+
+class Board(cells: Cell*) {
+  def isAlive(x: Int, y: Int) = true
+
+}
+
+case class Cell(x: Int, y: Int)
