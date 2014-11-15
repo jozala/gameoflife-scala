@@ -12,11 +12,15 @@ class GameOfLifeTest extends FlatSpec with Matchers with MockitoSugar {
     val board = new Board(Cell(1,1))
     board.isAlive(1,1) shouldBe true
   }
-
+"Cell not specified on the board" should "be dead" in {
+  val board=new Board(Cell(0,1))
+  board.isAlive(1,1) shouldBe false
+}
 }
 
 class Board(cells: Cell*) {
-  def isAlive(x: Int, y: Int) = true
+  def isAlive(x: Int, y: Int)= { if (cells.contains(Cell(x,y))) true else false} 
+
 
 }
 
