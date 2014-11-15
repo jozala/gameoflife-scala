@@ -27,9 +27,15 @@ class GameOfLifeTest extends FlatSpec with Matchers with MockitoSugar {
     board.countNeighbours(1,1) should be (2)
   }
 
+  "Board" should "calculate live neighbours diagonally" in {
+    val board=new Board(Cell(0,0),Cell(2,2), Cell(0,2), Cell(2,0))
+    board.countNeighbours(1,1) should be (4)
+  }
+
 }
 
 class Board(cells: Cell*) {
+
   def countNeighbours(x: Int, y: Int): Int = {
     var sum=0
     if (isAlive(x-1,y)) sum += 1
@@ -37,10 +43,15 @@ class Board(cells: Cell*) {
     if (isAlive(x,y+1)) sum += 1
     if (isAlive(x,y-1)) sum += 1
 
+    if (isAlive(x-1,y-1)) sum += 1
+    if (isAlive(x+1,y+1)) sum += 1
+    if (isAlive(x+1,y-1)) sum += 1
+    if (isAlive(x-1,y+1)) sum += 1
+
     return sum
   }
 
-  def isAlive(x: Int, y: Int)= { if (cells.contains(Cell(x,y))) true else false}
+  def isAlive(x: Int, y: Int)= cells.contains(Cell(x,y))
 
 
 }
