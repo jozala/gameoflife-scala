@@ -7,6 +7,14 @@ This project has been started on Global Day of Coderetreat on 15th of November 2
 It uses Java-Swing GUI implemented by Brad which is avaliable here:
 https://github.com/bjacques/code-examples/tree/master/gui-app
 
+
+Requirements
+------------
+
+- JDK 8
+- Scala (version >= 2.11)
+- SBT (version >= 0.13.x)
+
 Compile
 -------
 
